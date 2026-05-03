@@ -38,6 +38,12 @@ export default function Navigation() {
     setMobileMenuOpen(false);
   };
 
+  const openSignup = () => {
+    setAuthMode('signup');
+    setShowAuthModal(true);
+    setMobileMenuOpen(false);
+  };
+
   const isActive = (path: string) => {
     if (path === '/') return pathname === '/';
     return pathname?.startsWith(path);
@@ -66,16 +72,30 @@ export default function Navigation() {
                   {item.label}
                 </Link>
               ))}
-              <div className="ml-3 pl-3 border-l border-[#2e2e2e] flex items-center">
+              <div className="ml-3 pl-3 border-l border-[#2e2e2e] flex items-center gap-2">
                 <a
                   href="mailto:info@theaiparty.uk"
                   className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm"
                 >
                   Contact
                 </a>
+                {!user && (
+                  <button
+                    onClick={openSignup}
+                    className="px-4 py-1.5 border border-white text-white hover:bg-white hover:text-[#1a1a1a] text-sm font-bold uppercase tracking-wider transition-colors"
+                  >
+                    Join
+                  </button>
+                )}
+                <Link
+                  href="/donate"
+                  className="px-4 py-1.5 bg-white text-[#1a1a1a] hover:bg-[#C9C9C9] text-sm font-bold uppercase tracking-wider transition-colors"
+                >
+                  Donate
+                </Link>
                 {user ? (
                   <>
-                    <span className="text-white text-sm truncate max-w-[150px] mr-2">{user.email}</span>
+                    <span className="text-white text-sm truncate max-w-[150px] mx-2">{user.email}</span>
                     <button onClick={logout} className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm">
                       Logout
                     </button>
@@ -124,6 +144,21 @@ export default function Navigation() {
                   >
                     Contact
                   </a>
+                  {!user && (
+                    <button
+                      onClick={openSignup}
+                      className="w-full text-left px-3 py-2 text-white text-sm font-semibold"
+                    >
+                      Join
+                    </button>
+                  )}
+                  <Link
+                    href="/donate"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full px-3 py-2 text-white text-sm font-semibold"
+                  >
+                    Donate
+                  </Link>
                   {user ? (
                     <>
                       <div className="px-3 py-2 text-white text-sm truncate">{user.email}</div>
