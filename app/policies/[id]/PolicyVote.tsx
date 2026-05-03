@@ -62,12 +62,12 @@ export default function PolicyVote({ policyId, initialSupport, initialOppose }: 
   }
 
   return (
-    <section className="bg-[#1c3849] border border-[#405b6b] p-6">
+    <section className="bg-[#222222] border border-[#2e2e2e] p-6">
       <div className="text-xs uppercase tracking-[0.25em] text-[#C9C9C9] mb-4">Cast your vote</div>
 
       {total > 0 && (
         <>
-          <div className="h-3 bg-[#1c3849] flex overflow-hidden mb-2">
+          <div className="h-3 bg-[#222222] flex overflow-hidden mb-2">
             <div className="h-full bg-[#ffffff] transition-all" style={{ width: `${supportPct}%` }} />
             <div className="h-full bg-[#C9C9C9] transition-all" style={{ width: `${opposePct}%` }} />
           </div>
@@ -87,8 +87,8 @@ export default function PolicyVote({ policyId, initialSupport, initialOppose }: 
             userVote === 'support'
               ? 'bg-[#ffffff] border-[#ffffff] text-white'
               : userVote
-              ? 'bg-[#002633] border-[#405b6b] text-[#C9C9C9] cursor-not-allowed'
-              : 'bg-[#002633] border-[#ffffff] text-[#ffffff] hover:bg-[#ffffff] hover:text-white'
+              ? 'bg-[#1a1a1a] border-[#2e2e2e] text-[#C9C9C9] cursor-not-allowed'
+              : 'bg-[#1a1a1a] border-[#ffffff] text-[#ffffff] hover:bg-[#ffffff] hover:text-white'
           }`}
         >
           {userVote === 'support' ? '✓ Supported' : 'Support'}
@@ -100,8 +100,8 @@ export default function PolicyVote({ policyId, initialSupport, initialOppose }: 
             userVote === 'oppose'
               ? 'bg-[#C9C9C9] border-[#C9C9C9] text-white'
               : userVote
-              ? 'bg-[#002633] border-[#405b6b] text-[#C9C9C9] cursor-not-allowed'
-              : 'bg-[#002633] border-[#C9C9C9] text-[#C9C9C9] hover:bg-[#C9C9C9] hover:text-white'
+              ? 'bg-[#1a1a1a] border-[#2e2e2e] text-[#C9C9C9] cursor-not-allowed'
+              : 'bg-[#1a1a1a] border-[#C9C9C9] text-[#C9C9C9] hover:bg-[#C9C9C9] hover:text-white'
           }`}
         >
           {userVote === 'oppose' ? '✓ Opposed' : 'Oppose'}

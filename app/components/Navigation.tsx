@@ -44,11 +44,11 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="bg-[#002633] border-b border-[#405b6b]/50 relative mb-10">
+      <nav className="bg-[#1a1a1a] border-b border-[#2e2e2e]/50 relative mb-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex-shrink-0 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white text-[#002633] flex items-center justify-center font-black text-lg tracking-tight">AI</div>
+              <div className="w-10 h-10 rounded-full bg-white text-[#1a1a1a] flex items-center justify-center font-black text-lg tracking-tight">AI</div>
               <div>
                 <div className="text-sm font-bold text-white tracking-widest leading-none">THE AI PARTY</div>
                 <div className="text-[10px] text-[#C9C9C9] tracking-wider mt-1">Every policy decided by you</div>
@@ -65,7 +65,7 @@ export default function Navigation() {
                   {item.label}
                 </Link>
               ))}
-              <div className="ml-3 pl-3 border-l border-[#405b6b] flex items-center">
+              <div className="ml-3 pl-3 border-l border-[#2e2e2e] flex items-center">
                 <a
                   href="mailto:info@theaiparty.uk"
                   className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm"
@@ -103,7 +103,7 @@ export default function Navigation() {
           </div>
 
           {mobileMenuOpen && (
-            <div className="lg:hidden pb-4 border-t border-[#405b6b]/50 mt-2">
+            <div className="lg:hidden pb-4 border-t border-[#2e2e2e]/50 mt-2">
               <div className="flex flex-col py-2">
                 {NAV_ITEMS.map(item => (
                   <Link
@@ -115,7 +115,7 @@ export default function Navigation() {
                     {item.label}
                   </Link>
                 ))}
-                <div className="border-t border-[#405b6b]/50 mt-2 pt-2">
+                <div className="border-t border-[#2e2e2e]/50 mt-2 pt-2">
                   <a
                     href="mailto:info@theaiparty.uk"
                     onClick={() => setMobileMenuOpen(false)}

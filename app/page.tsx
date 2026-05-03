@@ -37,11 +37,11 @@ export default async function HomePage() {
   const members = (membersData ?? []) as Member[]
 
   return (
-    <div className="min-h-screen bg-[#002633] text-white">
+    <div className="min-h-screen bg-[#1a1a1a] text-white">
       <Navigation />
 
       {/* HERO */}
-      <section className="max-w-6xl mx-auto px-6 pt-8 pb-16 border-b border-[#405b6b]">
+      <section className="max-w-6xl mx-auto px-6 pt-8 pb-16 border-b border-[#2e2e2e]">
         <div className="text-xs uppercase tracking-[0.3em] text-[#C9C9C9] mb-6">Manifesto · 2026</div>
         <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8 max-w-5xl">
           The first political party run by AI.{' '}
@@ -52,17 +52,17 @@ export default async function HomePage() {
           no five-year manifestos, no waiting for the next election.
         </p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/policies" className="px-7 py-3.5 bg-white text-[#002633] font-bold text-sm uppercase tracking-wider hover:bg-[#C9C9C9] transition-colors">
+          <Link href="/policies" className="px-7 py-3.5 bg-white text-[#1a1a1a] font-bold text-sm uppercase tracking-wider hover:bg-[#C9C9C9] transition-colors">
             Vote on policies
           </Link>
-          <Link href="/how-it-works" className="px-7 py-3.5 bg-transparent border border-[#405b6b] text-white font-bold text-sm uppercase tracking-wider hover:border-white transition-colors">
+          <Link href="/how-it-works" className="px-7 py-3.5 bg-transparent border border-[#2e2e2e] text-white font-bold text-sm uppercase tracking-wider hover:border-white transition-colors">
             How it works
           </Link>
         </div>
       </section>
 
       {/* LIVE POLICY VOTING */}
-      <section className="max-w-6xl mx-auto px-6 py-16 border-b border-[#405b6b]">
+      <section className="max-w-6xl mx-auto px-6 py-16 border-b border-[#2e2e2e]">
         <div className="flex items-baseline justify-between mb-8">
           <div>
             <div className="text-xs uppercase tracking-[0.25em] text-[#C9C9C9] mb-2">Open for voting</div>
@@ -75,9 +75,9 @@ export default async function HomePage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {featured.map(p => (
-            <div key={p.id} className="bg-[#1c3849] border border-[#1c3849] p-6 flex flex-col">
+            <div key={p.id} className="bg-[#222222] border border-[#222222] p-6 flex flex-col">
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-[10px] uppercase tracking-[0.2em] bg-white text-[#002633] px-2 py-0.5 font-bold">{p.area}</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] bg-white text-[#1a1a1a] px-2 py-0.5 font-bold">{p.area}</span>
               </div>
               <Link href={`/policies/${p.id}`} className="block mb-3 hover:text-[#C9C9C9] transition-colors">
                 <h3 className="text-lg font-bold leading-snug">{p.title}</h3>
@@ -94,7 +94,7 @@ export default async function HomePage() {
       </section>
 
       {/* THE CABINET */}
-      <section className="max-w-6xl mx-auto px-6 py-16 border-b border-[#405b6b]">
+      <section className="max-w-6xl mx-auto px-6 py-16 border-b border-[#2e2e2e]">
         <div className="flex items-baseline justify-between mb-8">
           <div>
             <div className="text-xs uppercase tracking-[0.25em] text-[#C9C9C9] mb-2">The Cabinet</div>
@@ -106,8 +106,8 @@ export default async function HomePage() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {members.map(m => (
-            <div key={m.id} className="bg-[#1c3849] border border-[#1c3849] p-4 text-center">
-              <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-br from-white to-[#C9C9C9] text-[#002633] flex items-center justify-center font-black text-sm">
+            <div key={m.id} className="bg-[#222222] border border-[#222222] p-4 text-center">
+              <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-br from-white to-[#C9C9C9] text-[#1a1a1a] flex items-center justify-center font-black text-sm">
                 {m.name.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase()}
               </div>
               <div className="text-[10px] uppercase tracking-[0.15em] text-[#C9C9C9] mb-1">{m.role}</div>
@@ -119,12 +119,12 @@ export default async function HomePage() {
 
       {/* CTA */}
       <section className="max-w-6xl mx-auto px-6 py-20">
-        <div className="bg-[#1c3849] border border-[#1c3849] p-10 sm:p-14 text-center">
+        <div className="bg-[#222222] border border-[#222222] p-10 sm:p-14 text-center">
           <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">Your vote runs the country.</h2>
           <p className="text-[#C9C9C9] max-w-2xl mx-auto mb-8 leading-relaxed">
             No election cycle. No manifesto theatre. Decide on every policy in real time, at the speed of the country, not the calendar.
           </p>
-          <Link href="/policies" className="inline-block px-8 py-4 bg-white text-[#002633] font-bold text-sm uppercase tracking-wider hover:bg-[#C9C9C9] transition-colors">
+          <Link href="/policies" className="inline-block px-8 py-4 bg-white text-[#1a1a1a] font-bold text-sm uppercase tracking-wider hover:bg-[#C9C9C9] transition-colors">
             Cast your first vote
           </Link>
         </div>

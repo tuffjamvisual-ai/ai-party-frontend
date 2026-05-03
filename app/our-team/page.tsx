@@ -21,10 +21,10 @@ export default async function OurTeamPage() {
   const members = (data ?? []) as Member[]
 
   return (
-    <div className="min-h-screen bg-[#002633] text-white">
+    <div className="min-h-screen bg-[#1a1a1a] text-white">
       <Navigation />
       <main className="max-w-5xl mx-auto px-6 pb-20">
-        <div className="border-b border-[#405b6b] pb-8 mb-10">
+        <div className="border-b border-[#2e2e2e] pb-8 mb-10">
           <div className="text-xs uppercase tracking-[0.25em] text-[#C9C9C9] mb-3">The Cabinet</div>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">Our team</h1>
           <p className="text-[#C9C9C9] max-w-2xl leading-relaxed">
@@ -34,8 +34,8 @@ export default async function OurTeamPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {members.map(m => (
-            <div key={m.id} className="bg-[#1c3849] border border-[#1c3849] p-6 flex gap-5">
-              <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-white to-[#C9C9C9] text-[#002633] flex items-center justify-center font-black text-xl tracking-tight">
+            <div key={m.id} className="bg-[#222222] border border-[#222222] p-6 flex gap-5">
+              <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-white to-[#C9C9C9] text-[#1a1a1a] flex items-center justify-center font-black text-xl tracking-tight">
                 {m.name.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">

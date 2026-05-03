@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#002633] text-white">
+    <div className="min-h-screen bg-[#1a1a1a] text-white">
       <Navigation />
 
       <main className="max-w-2xl mx-auto px-6 py-12 text-white leading-loose space-y-6">
@@ -46,10 +46,10 @@ export default function AboutPage() {
         </p>
 
         <div className="pt-6 flex flex-wrap gap-3">
-          <Link href="/policies" className="inline-block px-6 py-3 bg-white text-[#002633] font-bold text-sm uppercase tracking-wider hover:bg-[#C9C9C9] transition-colors">
+          <Link href="/policies" className="inline-block px-6 py-3 bg-white text-[#1a1a1a] font-bold text-sm uppercase tracking-wider hover:bg-[#C9C9C9] transition-colors">
             See open policies
           </Link>
-          <Link href="/how-it-works" className="inline-block px-6 py-3 bg-transparent border border-[#405b6b] text-white font-bold text-sm uppercase tracking-wider hover:border-white transition-colors">
+          <Link href="/how-it-works" className="inline-block px-6 py-3 bg-transparent border border-[#2e2e2e] text-white font-bold text-sm uppercase tracking-wider hover:border-white transition-colors">
             How it works
           </Link>
         </div>

@@ -35,10 +35,10 @@ const steps = [
 
 export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen bg-[#002633] text-white">
+    <div className="min-h-screen bg-[#1a1a1a] text-white">
       <Navigation />
       <main className="max-w-3xl mx-auto px-6 pb-20">
-        <div className="border-b border-[#405b6b] pb-8 mb-12">
+        <div className="border-b border-[#2e2e2e] pb-8 mb-12">
           <div className="text-xs uppercase tracking-[0.25em] text-[#C9C9C9] mb-3">The process</div>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">How it works</h1>
           <p className="text-[#C9C9C9] leading-relaxed">
@@ -49,7 +49,7 @@ export default function HowItWorksPage() {
         <ol className="space-y-10">
           {steps.map(s => (
             <li key={s.number} className="grid grid-cols-[auto_1fr] gap-6">
-              <div className="text-5xl font-black text-[#405b6b] tracking-tighter">{s.number}</div>
+              <div className="text-5xl font-black text-[#2e2e2e] tracking-tighter">{s.number}</div>
               <div>
                 <h2 className="text-xl font-bold mb-2">{s.title}</h2>
                 <p className="text-[#C9C9C9] leading-relaxed">{s.body}</p>
@@ -58,7 +58,7 @@ export default function HowItWorksPage() {
           ))}
         </ol>
 
-        <div className="mt-16 border-t border-[#405b6b] pt-10">
+        <div className="mt-16 border-t border-[#2e2e2e] pt-10">
           <h2 className="text-2xl font-bold mb-4">Frequently raised concerns</h2>
           <div className="space-y-6 text-[#C9C9C9] leading-relaxed">
             <div>
@@ -76,7 +76,7 @@ export default function HowItWorksPage() {
           </div>
 
           <div className="mt-10">
-            <Link href="/policies" className="inline-block px-6 py-3 bg-white text-[#002633] font-bold text-sm uppercase tracking-wider hover:bg-[#C9C9C9] transition-colors">
+            <Link href="/policies" className="inline-block px-6 py-3 bg-white text-[#1a1a1a] font-bold text-sm uppercase tracking-wider hover:bg-[#C9C9C9] transition-colors">
               See policies open for voting
             </Link>
           </div>

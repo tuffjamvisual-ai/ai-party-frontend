@@ -64,11 +64,11 @@ export default function TrendingPoll() {
   return (
     <div className="w-full">
       <div className="text-sm text-white uppercase tracking-wider mb-2">Trending People's Poll</div>
-      <div className="bg-[#002633] border border-[#405b6b] rounded-lg p-4">
+      <div className="bg-[#1a1a1a] border border-[#2e2e2e] rounded-lg p-4">
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm px-2 py-0.5 bg-white/10 text-[#ffffff] rounded border border-white/30">Poll</span>
           {poll.constituency && (
-            <span className="text-sm px-2 py-0.5 bg-[#1c3849] text-white rounded border border-[#405b6b]">{poll.constituency}</span>
+            <span className="text-sm px-2 py-0.5 bg-[#222222] text-white rounded border border-[#2e2e2e]">{poll.constituency}</span>
         )}
         </div>
 
@@ -76,7 +76,7 @@ export default function TrendingPoll() {
 
         {(
           <>
-            <div className="h-8 bg-[#1c3849] rounded-full overflow-hidden flex mb-2">
+            <div className="h-8 bg-[#222222] rounded-full overflow-hidden flex mb-2">
               <div className="bg-[#ffffff] h-full transition-all" style={{ width: yesPercent + '%' }} />
               <div className="bg-[#C9C9C9] h-full transition-all" style={{ width: noPercent + '%' }} />
             </div>
@@ -92,14 +92,14 @@ export default function TrendingPoll() {
           <button
             onClick={() => handleVote('yes')}
             disabled={hasVoted}
-            className={'px-4 py-1.5 rounded text-sm font-medium transition-colors ' + (hasVoted ? (userVote === 'yes' ? 'bg-[#1c3849] text-white' : 'bg-[#1c3849] text-white cursor-not-allowed') : 'bg-[#1c3849] hover:bg-[#1c3849] text-white')}
+            className={'px-4 py-1.5 rounded text-sm font-medium transition-colors ' + (hasVoted ? (userVote === 'yes' ? 'bg-[#222222] text-white' : 'bg-[#222222] text-white cursor-not-allowed') : 'bg-[#222222] hover:bg-[#222222] text-white')}
           >
             {userVote === 'yes' ? '✓ Yes' : 'Yes'}
           </button>
           <button
             onClick={() => handleVote('no')}
             disabled={hasVoted}
-            className={'px-4 py-1.5 rounded text-sm font-medium transition-colors ' + (hasVoted ? (userVote === 'no' ? 'bg-[#C9C9C9] text-white' : 'bg-[#1c3849] text-white cursor-not-allowed') : 'bg-[#C9C9C9] hover:bg-[#C9C9C9] text-white')}
+            className={'px-4 py-1.5 rounded text-sm font-medium transition-colors ' + (hasVoted ? (userVote === 'no' ? 'bg-[#C9C9C9] text-white' : 'bg-[#222222] text-white cursor-not-allowed') : 'bg-[#C9C9C9] hover:bg-[#C9C9C9] text-white')}
           >
             {userVote === 'no' ? '✓ No' : 'No'}
           </button>
