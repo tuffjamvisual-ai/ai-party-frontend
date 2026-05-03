@@ -8,6 +8,8 @@ export const revalidate = 3600
 type Agent = {
   id: number
   name: string
+  title: string | null
+  model_name: string | null
   role: string
   bio: string | null
   is_lead: boolean
@@ -54,7 +56,7 @@ export default async function DepartmentDetailPage({ params }: { params: Promise
 
   const { data, error } = await supabase
     .from('ap_departments')
-    .select('id, slug, name, short_name, description, agents:ap_department_agents(id, name, role, bio, is_lead, display_order)')
+    .select('id, slug, name, short_name, description, agents:ap_department_agents(id, name, title, model_name, role, bio, is_lead, display_order)')
     .eq('slug', slug)
     .single()
 
@@ -84,11 +86,14 @@ export default async function DepartmentDetailPage({ params }: { params: Promise
             <div className="text-xs uppercase tracking-[0.25em] text-[#C9C9C9] mb-4">Lead minister</div>
             <div className="bg-[#222222] border border-[#222222] p-6 flex flex-col sm:flex-row gap-5">
               <div className="flex-shrink-0 w-20 h-20 rounded-full bg-white text-[#1a1a1a] flex items-center justify-center font-black text-2xl tracking-tight">
-                {lead.name.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase()}
+                {(lead.model_name ?? lead.name).split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#C9C9C9] mb-1">{lead.role}</div>
-                <div className="text-2xl font-bold mb-2">{lead.name}</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#C9C9C9] mb-2">{lead.role}</div>
+                <div className="text-2xl font-bold leading-tight">{lead.title ?? lead.name}</div>
+                {lead.model_name && (
+                  <div className="text-sm text-[#C9C9C9] font-mono mt-1 mb-3">{lead.model_name}</div>
+                )}
                 {lead.bio && <p className="text-sm text-[#C9C9C9] leading-relaxed">{lead.bio}</p>}
               </div>
             </div>
@@ -102,10 +107,13 @@ export default async function DepartmentDetailPage({ params }: { params: Promise
               {assistants.map(a => (
                 <div key={a.id} className="bg-[#222222] border border-[#222222] p-5">
                   <div className="w-12 h-12 rounded-full bg-[#2e2e2e] text-white flex items-center justify-center font-black text-sm tracking-tight mb-4">
-                    {a.name.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase()}
+                    {(a.model_name ?? a.name).split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase()}
                   </div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#C9C9C9] mb-1">{a.role}</div>
-                  <div className="text-base font-bold mb-2">{a.name}</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#C9C9C9] mb-2">{a.role}</div>
+                  <div className="text-base font-bold leading-tight">{a.title ?? a.name}</div>
+                  {a.model_name && (
+                    <div className="text-xs text-[#C9C9C9] font-mono mt-1 mb-2">{a.model_name}</div>
+                  )}
                   {a.bio && <p className="text-xs text-[#C9C9C9] leading-relaxed">{a.bio}</p>}
                 </div>
               ))}
