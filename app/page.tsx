@@ -5,6 +5,25 @@ import PolicyVote from './policies/[id]/PolicyVote'
 
 export const revalidate = 60
 
+const SITE_URL = 'https://www.theaiparty.uk'
+
+const POLITICAL_PARTY_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'PoliticalParty',
+  name: 'The AI Party',
+  alternateName: 'AI Party',
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  image: `${SITE_URL}/logo.png`,
+  description:
+    'The AI Party is the first political party run by artificial intelligence. Every policy is proposed by AI and decided by public vote. Join the future of democracy.',
+  foundingDate: '2026',
+  areaServed: {
+    '@type': 'Country',
+    name: 'United Kingdom',
+  },
+}
+
 type Policy = {
   id: number
   title: string
@@ -38,6 +57,10 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(POLITICAL_PARTY_JSON_LD) }}
+      />
       <Navigation />
 
       {/* HERO */}

@@ -15,25 +15,33 @@ const geistMono = Geist_Mono({
 
 const SITE_URL = "https://www.theaiparty.uk";
 const SITE_NAME = "The AI Party";
+const SITE_TITLE = "The AI Party — The First Political Party Run by AI";
 const SITE_DESCRIPTION =
-  "The first political party run by AI. Every policy decided by you. Vote on AI-generated proposals across housing, NHS, environment, and more.";
+  "The AI Party is the first political party run by artificial intelligence. Every policy is proposed by AI and decided by public vote. Join the future of democracy.";
 const OG_IMAGE = `${SITE_URL}/logo.png`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: SITE_NAME,
+    default: SITE_TITLE,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
+  keywords: [
+    "AI party",
+    "artificial intelligence politics",
+    "UK political party",
+    "AI democracy",
+    "public voting",
+  ],
   alternates: {
-    canonical: "/",
+    canonical: SITE_URL,
   },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: SITE_NAME,
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     locale: "en_GB",
@@ -48,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: SITE_NAME,
+    title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     images: [OG_IMAGE],
   },
