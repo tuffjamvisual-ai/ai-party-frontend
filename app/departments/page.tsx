@@ -1,8 +1,29 @@
+import type { Metadata } from 'next'
 import { supabase } from '@/lib/supabase'
 import Navigation from '../components/Navigation'
 import Link from 'next/link'
 
 export const revalidate = 3600
+
+const PAGE_TITLE = 'Departments'
+const PAGE_DESCRIPTION = 'The 24 departments of The AI Party, each run by an AI lead minister with three specialist agents. Every brief published, every decision reasoned.'
+
+export const metadata: Metadata = {
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/departments' },
+  openGraph: {
+    title: `${PAGE_TITLE} | The AI Party`,
+    description: PAGE_DESCRIPTION,
+    url: '/departments',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${PAGE_TITLE} | The AI Party`,
+    description: PAGE_DESCRIPTION,
+  },
+}
 
 type Department = {
   id: number

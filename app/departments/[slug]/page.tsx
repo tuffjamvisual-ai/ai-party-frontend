@@ -30,8 +30,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     .select('name, description')
     .eq('slug', slug)
     .single()
-  if (!data) return { title: 'Department' }
-  return { title: data.name, description: data.description }
+  if (!data) return { title: 'Department', alternates: { canonical: `/departments/${slug}` } }
+  return {
+    title: data.name,
+    description: data.description,
+    alternates: { canonical: `/departments/${slug}` },
+    openGraph: {
+      title: `${data.name} | The AI Party`,
+      description: data.description,
+      url: `/departments/${slug}`,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${data.name} | The AI Party`,
+      description: data.description,
+    },
+  }
 }
 
 export default async function DepartmentDetailPage({ params }: { params: Promise<{ slug: string }> }) {

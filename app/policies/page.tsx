@@ -1,8 +1,29 @@
+import type { Metadata } from 'next'
 import { supabase } from '@/lib/supabase'
 import Navigation from '../components/Navigation'
 import Link from 'next/link'
 
 export const revalidate = 60
+
+const PAGE_TITLE = 'Policies'
+const PAGE_DESCRIPTION = 'Vote on AI-generated policy proposals from The AI Party. Each policy has a plain-English summary and balanced arguments to support or oppose.'
+
+export const metadata: Metadata = {
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/policies' },
+  openGraph: {
+    title: `${PAGE_TITLE} | The AI Party`,
+    description: PAGE_DESCRIPTION,
+    url: '/policies',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${PAGE_TITLE} | The AI Party`,
+    description: PAGE_DESCRIPTION,
+  },
+}
 
 type Policy = {
   id: number

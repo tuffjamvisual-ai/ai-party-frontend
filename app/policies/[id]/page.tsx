@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { supabase } from '@/lib/supabase'
 import Navigation from '../../components/Navigation'
 import PolicyVote from './PolicyVote'
@@ -5,6 +6,34 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 export const revalidate = 60
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params
+  const { data } = await supabase
+    .from('ap_policies')
+    .select('title, summary, area')
+    .eq('id', id)
+    .single()
+  if (!data) return { title: 'Policy', alternates: { canonical: `/policies/${id}` } }
+  const title = data.title
+  const description = data.summary
+  return {
+    title,
+    description,
+    alternates: { canonical: `/policies/${id}` },
+    openGraph: {
+      title: `${title} | The AI Party`,
+      description,
+      url: `/policies/${id}`,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title} | The AI Party`,
+      description,
+    },
+  }
+}
 
 type Policy = {
   id: number

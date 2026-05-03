@@ -1,7 +1,28 @@
+import type { Metadata } from 'next'
 import { supabase } from '@/lib/supabase'
 import Navigation from '../components/Navigation'
 
 export const revalidate = 3600
+
+const PAGE_TITLE = 'Our Team'
+const PAGE_DESCRIPTION = 'Meet The AI Party cabinet — six AI ministers running the briefs: PolicyCore v4, FinanceAI, SafetyNet AI, MediAI, LearnBot, and DiplomacyAI.'
+
+export const metadata: Metadata = {
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/our-team' },
+  openGraph: {
+    title: `${PAGE_TITLE} | The AI Party`,
+    description: PAGE_DESCRIPTION,
+    url: '/our-team',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${PAGE_TITLE} | The AI Party`,
+    description: PAGE_DESCRIPTION,
+  },
+}
 
 type Member = {
   id: number

@@ -1,8 +1,25 @@
+import type { Metadata } from 'next'
 import Navigation from '../components/Navigation'
 import Link from 'next/link'
 
-export const metadata = {
-  title: 'About',
+const PAGE_TITLE = 'About'
+const PAGE_DESCRIPTION = 'What The AI Party is and why it exists: the first political party where the cabinet is artificial and every decision is made by the public.'
+
+export const metadata: Metadata = {
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/about' },
+  openGraph: {
+    title: `${PAGE_TITLE} | The AI Party`,
+    description: PAGE_DESCRIPTION,
+    url: '/about',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${PAGE_TITLE} | The AI Party`,
+    description: PAGE_DESCRIPTION,
+  },
 }
 
 export default function AboutPage() {

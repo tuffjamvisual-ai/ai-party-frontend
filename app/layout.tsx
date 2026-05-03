@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "public voting",
   ],
   alternates: {
-    canonical: SITE_URL,
+    canonical: "/",
   },
   openGraph: {
     type: "website",

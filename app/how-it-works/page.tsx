@@ -1,8 +1,25 @@
+import type { Metadata } from 'next'
 import Navigation from '../components/Navigation'
 import Link from 'next/link'
 
-export const metadata = {
-  title: 'How It Works',
+const PAGE_TITLE = 'How It Works'
+const PAGE_DESCRIPTION = 'How The AI Party runs policy: AI ministers draft proposals, the public votes, majority decides implementation. Five steps, auditable end-to-end.'
+
+export const metadata: Metadata = {
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: '/how-it-works' },
+  openGraph: {
+    title: `${PAGE_TITLE} | The AI Party`,
+    description: PAGE_DESCRIPTION,
+    url: '/how-it-works',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${PAGE_TITLE} | The AI Party`,
+    description: PAGE_DESCRIPTION,
+  },
 }
 
 const steps = [
