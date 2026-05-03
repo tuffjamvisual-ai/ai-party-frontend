@@ -1,0 +1,37 @@
+name: Daily Data Sync
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Sync bills (incremental)
+        run: node sync-bills-incremental.js
+
+      - name: Match bill divisions
+        run: node scripts/sync-bill-divisions.js
+      
+      - name: Generate AI explanations
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node generate-ai-explanations.js
+      
+      - name: Download MP voting data (Sundays only)
+        if: github.event.schedule == '0 2 * * 0'
+        run: node download-all-divisions-fixed.js
