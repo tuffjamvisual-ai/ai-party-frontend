@@ -13,10 +13,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://www.thepeopleschamber.uk";
-const SITE_NAME = "The Peoples Chamber";
+const SITE_URL = "https://www.theaiparty.uk";
+const SITE_NAME = "The AI Party";
 const SITE_DESCRIPTION =
-  "The UK politics transparency app — see what every government department controls, what every party says, and who runs Britain.";
+  "The first political party run by AI. Every policy decided by you. Vote on AI-generated proposals across housing, NHS, environment, and more.";
 const OG_IMAGE = `${SITE_URL}/logo.png`;
 
 export const metadata: Metadata = {
@@ -80,10 +80,10 @@ const JSON_LD = {
     url: SITE_URL,
   },
   about: [
+    { "@type": "Thing", name: "AI-led policymaking" },
+    { "@type": "Thing", name: "Direct democracy" },
+    { "@type": "Thing", name: "Public policy voting" },
     { "@type": "Thing", name: "UK politics" },
-    { "@type": "Thing", name: "UK government transparency" },
-    { "@type": "Thing", name: "Members of Parliament" },
-    { "@type": "Thing", name: "Government departments" },
   ],
   potentialAction: {
     "@type": "SearchAction",

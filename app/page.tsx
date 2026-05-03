@@ -1,152 +1,134 @@
 import { supabase } from '@/lib/supabase'
 import Navigation from './components/Navigation'
 import Link from 'next/link'
+import PolicyVote from './policies/[id]/PolicyVote'
 
-export const revalidate = 3600
+export const revalidate = 60
+
+type Policy = {
+  id: number
+  title: string
+  area: string
+  summary: string
+  vote_count_support: number
+  vote_count_oppose: number
+}
+
+type Member = {
+  id: number
+  role: string
+  name: string
+}
 
 export default async function HomePage() {
-  const [
-    { data: news },
-    { data: bills },
-    { data: contracts },
-    { data: donations },
-    { data: revolving },
-  ] = await Promise.all([
-    supabase.from('press_releases').select('title, description, organisation, published_at, gov_url').order('published_at', { ascending: false }).limit(5),
-    supabase.from('bill').select('id, title, vote_count_yes, vote_count_no, vote_count_abstain').order('vote_count_yes', { ascending: false }).limit(3),
-    supabase.from('government_contracts').select('title, supplier, value').order('id', { ascending: false }).limit(2),
-    supabase.from('political_donations').select('donor_name, recipient_name, amount').order('id', { ascending: false }).limit(2),
-    supabase.from('revolving_door').select('person_name, previous_role, organisation').order('id', { ascending: false }).limit(2),
+  const [{ data: policiesData }, { data: membersData }] = await Promise.all([
+    supabase
+      .from('ap_policies')
+      .select('id, title, area, summary, vote_count_support, vote_count_oppose')
+      .order('id', { ascending: true })
+      .limit(3),
+    supabase
+      .from('ap_members')
+      .select('id, role, name')
+      .order('display_order', { ascending: true }),
   ])
 
-  const leadStory = news?.[0]
-  const otherStories = news?.slice(1, 5) || []
-  const today = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+  const featured = (policiesData ?? []) as Policy[]
+  const members = (membersData ?? []) as Member[]
 
   return (
-    <div style={{ minHeight: '100vh', background: '#1a1a1a', color: '#fff' }}>
+    <div className="min-h-screen bg-[#1a1a1a] text-white">
       <Navigation />
-      <main style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem 3rem' }}>
 
-        {/* MASTHEAD */}
-        <div style={{ padding: '1.25rem 0', borderBottom: '3px solid #fff', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0' }}>
-          <div style={{ fontSize: '11px', color: '#cccccc', letterSpacing: '0.2em', textTransform: 'uppercase' }}>{today}</div>
-          <div style={{ display: 'flex', gap: '2rem' }}>
-            {[
-              { href: '/bills', label: 'Bills' },
-              { href: '/mps', label: 'MPs' },
-              { href: '/transparency', label: 'Transparency' },
-              { href: '/polls', label: "People's Polls" },
-              { href: '/departments', label: 'Departments' },
-            ].map(l => (
-              <Link key={l.href} href={l.href} style={{ fontSize: '11px', color: '#ffffff', textDecoration: 'none', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{l.label}</Link>
-            ))}
+      {/* HERO */}
+      <section className="max-w-6xl mx-auto px-6 pt-8 pb-16 border-b border-[#333]">
+        <div className="text-xs uppercase tracking-[0.3em] text-[#9a9a9a] mb-6">Manifesto · 2026</div>
+        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8 max-w-5xl">
+          The first political party run by AI.{' '}
+          <span className="text-[#9a9a9a]">Every policy decided by you.</span>
+        </h1>
+        <p className="text-lg sm:text-xl text-[#cccccc] max-w-3xl leading-relaxed mb-10">
+          Six AI ministers draft policy. The public votes. Nothing becomes law without a majority. No backroom deals,
+          no five-year manifestos, no waiting for the next election.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Link href="/policies" className="px-7 py-3.5 bg-white text-black font-bold text-sm uppercase tracking-wider hover:bg-[#cccccc] transition-colors">
+            Vote on policies
+          </Link>
+          <Link href="/how-it-works" className="px-7 py-3.5 bg-transparent border border-[#555] text-white font-bold text-sm uppercase tracking-wider hover:border-white transition-colors">
+            How it works
+          </Link>
+        </div>
+      </section>
+
+      {/* LIVE POLICY VOTING */}
+      <section className="max-w-6xl mx-auto px-6 py-16 border-b border-[#333]">
+        <div className="flex items-baseline justify-between mb-8">
+          <div>
+            <div className="text-xs uppercase tracking-[0.25em] text-[#9a9a9a] mb-2">Open for voting</div>
+            <h2 className="text-3xl font-black tracking-tight">Live policy votes</h2>
           </div>
+          <Link href="/policies" className="text-sm text-[#9a9a9a] hover:text-white tracking-wider uppercase">
+            See all →
+          </Link>
         </div>
 
-        {/* MAIN BODY */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1px', background: '#333', borderBottom: '1px solid #333' }}>
-
-          {/* LEFT - News */}
-          <div style={{ background: '#1a1a1a', padding: '1.5rem 2rem' }}>
-            {leadStory && (
-              <>
-                <div style={{ fontSize: '9px', background: '#fff', color: '#000', padding: '2px 8px', display: 'inline-block', marginBottom: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Latest</div>
-                <div style={{ fontSize: '26px', fontWeight: 900, color: '#fff', lineHeight: 1.1, marginBottom: '0.5rem' }}>{leadStory.title}</div>
-                <div style={{ fontSize: '13px', color: '#ffffff', lineHeight: 1.6, marginBottom: '0.5rem' }}>{leadStory.description}</div>
-                <div style={{ fontSize: '11px', color: '#cccccc', marginBottom: '1.5rem' }}>{leadStory.organisation} · {leadStory.published_at ? new Date(leadStory.published_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : ''}</div>
-              </>
-            )}
-
-            <div style={{ height: '1px', background: '#333', margin: '1rem 0' }}></div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              {otherStories.map((story, i) => (
-                <div key={i} style={{ borderLeft: '2px solid #333', paddingLeft: '0.75rem' }}>
-                  <div style={{ fontSize: '9px', color: '#cccccc', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '3px' }}>{story.organisation}</div>
-                  <div style={{ fontSize: '13px', color: '#ffffff', lineHeight: 1.3 }}>{story.title}</div>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ height: '1px', background: '#333', margin: '1.5rem 0' }}></div>
-
-            {/* Contracts + Donations */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div>
-                <div style={{ fontSize: '9px', color: '#cccccc', textTransform: 'uppercase', letterSpacing: '0.2em', borderBottom: '1px solid #333', paddingBottom: '6px', marginBottom: '8px' }}>Latest Contracts</div>
-                {contracts?.map((c, i) => (
-                  <Link href="/transparency/contracts" key={i} style={{ display: 'block', marginBottom: '10px', textDecoration: 'none', borderLeft: '2px solid #333', paddingLeft: '0.75rem' }}>
-                    <div style={{ fontSize: '13px', color: '#ffffff', lineHeight: 1.3 }}>{c.title}</div>
-                    <div style={{ fontSize: '11px', color: '#cccccc', marginTop: '2px' }}>{c.supplier} · £{c.value ? Number(c.value).toLocaleString() : 'undisclosed'}</div>
-                  </Link>
-                ))}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {featured.map(p => (
+            <div key={p.id} className="bg-[#111] border border-[#2a2a2a] p-6 flex flex-col">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-[10px] uppercase tracking-[0.2em] bg-white text-black px-2 py-0.5 font-bold">{p.area}</span>
               </div>
-              <div>
-                <div style={{ fontSize: '9px', color: '#cccccc', textTransform: 'uppercase', letterSpacing: '0.2em', borderBottom: '1px solid #333', paddingBottom: '6px', marginBottom: '8px' }}>Latest Donations</div>
-                {donations?.map((d, i) => (
-                  <Link href="/transparency/donations" key={i} style={{ display: 'block', marginBottom: '10px', textDecoration: 'none', borderLeft: '2px solid #333', paddingLeft: '0.75rem' }}>
-                    <div style={{ fontSize: '13px', color: '#ffffff', lineHeight: 1.3 }}>{d.donor_name}</div>
-                    <div style={{ fontSize: '11px', color: '#cccccc', marginTop: '2px' }}>{d.recipient_name} · £{Number(d.amount).toLocaleString()}</div>
-                  </Link>
-                ))}
-              </div>
+              <Link href={`/policies/${p.id}`} className="block mb-3 hover:text-[#cccccc] transition-colors">
+                <h3 className="text-lg font-bold leading-snug">{p.title}</h3>
+              </Link>
+              <p className="text-sm text-[#bbbbbb] leading-relaxed mb-5 line-clamp-3 flex-1">{p.summary}</p>
+              <PolicyVote
+                policyId={p.id}
+                initialSupport={p.vote_count_support}
+                initialOppose={p.vote_count_oppose}
+              />
             </div>
-          </div>
-
-          {/* RIGHT SIDEBAR */}
-          <div style={{ background: '#111', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-
-            {/* Bills voting */}
-            <div>
-              <div style={{ fontSize: '9px', color: '#cccccc', textTransform: 'uppercase', letterSpacing: '0.2em', borderBottom: '1px solid #222', paddingBottom: '6px', marginBottom: '1rem' }}>Public vs Parliament</div>
-              {bills?.map((bill) => {
-                const total = (bill.vote_count_yes || 0) + (bill.vote_count_no || 0) + (bill.vote_count_abstain || 0)
-                const yesPct = total > 0 ? Math.round((bill.vote_count_yes || 0) / total * 100) : 0
-                const noPct = total > 0 ? Math.round((bill.vote_count_no || 0) / total * 100) : 0
-                return (
-                  <Link href={`/bills/${bill.id}`} key={bill.id} style={{ display: 'block', marginBottom: '1rem', textDecoration: 'none' }}>
-                    <div style={{ fontSize: '13px', color: '#ffffff', lineHeight: 1.3, marginBottom: '4px' }}>{bill.title}</div>
-                    <div style={{ height: '3px', background: '#222', display: 'flex', marginBottom: '3px' }}>
-                      {yesPct > 0 && <div style={{ height: '100%', width: `${yesPct}%`, background: '#4a8a3a' }}></div>}
-                      {noPct > 0 && <div style={{ height: '100%', width: `${noPct}%`, background: '#8a3a3a' }}></div>}
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#cccccc' }}>{yesPct}% support · {total.toLocaleString()} votes</div>
-                  </Link>
-                )
-              })}
-            </div>
-
-            {/* Revolving door */}
-            <div>
-              <div style={{ fontSize: '9px', color: '#cccccc', textTransform: 'uppercase', letterSpacing: '0.2em', borderBottom: '1px solid #222', paddingBottom: '6px', marginBottom: '1rem' }}>Revolving Door</div>
-              {revolving?.map((r, i) => (
-                <Link href="/transparency/revolving-door" key={i} style={{ display: 'block', marginBottom: '10px', textDecoration: 'none' }}>
-                  <div style={{ fontSize: '13px', color: '#ffffff', lineHeight: 1.3 }}>{r.person_name}</div>
-                  <div style={{ fontSize: '11px', color: '#cccccc', marginTop: '2px' }}>{r.previous_role}</div>
-                </Link>
-              ))}
-            </div>
-
-            {/* Stats */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: 'auto' }}>
-              {[
-                { num: '3,884', label: 'Bills' },
-                { num: '650', label: 'MPs' },
-                { num: '8,011', label: 'Contracts' },
-                { num: '21k+', label: 'Records' },
-              ].map((s, i) => (
-                <div key={i} style={{ border: '1px solid #222', padding: '8px', textAlign: 'center' }}>
-                  <div style={{ fontSize: '22px', fontWeight: 900, color: '#fff' }}>{s.num}</div>
-                  <div style={{ fontSize: '9px', color: '#cccccc', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{s.label}</div>
-                </div>
-              ))}
-            </div>
-
-          </div>
+          ))}
         </div>
+      </section>
 
-      </main>
+      {/* THE CABINET */}
+      <section className="max-w-6xl mx-auto px-6 py-16 border-b border-[#333]">
+        <div className="flex items-baseline justify-between mb-8">
+          <div>
+            <div className="text-xs uppercase tracking-[0.25em] text-[#9a9a9a] mb-2">The Cabinet</div>
+            <h2 className="text-3xl font-black tracking-tight">Six AI ministers</h2>
+          </div>
+          <Link href="/our-team" className="text-sm text-[#9a9a9a] hover:text-white tracking-wider uppercase">
+            Meet the team →
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {members.map(m => (
+            <div key={m.id} className="bg-[#111] border border-[#2a2a2a] p-4 text-center">
+              <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-br from-white to-[#aaa] text-black flex items-center justify-center font-black text-sm">
+                {m.name.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase()}
+              </div>
+              <div className="text-[10px] uppercase tracking-[0.15em] text-[#9a9a9a] mb-1">{m.role}</div>
+              <div className="text-sm font-bold leading-tight">{m.name}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <div className="bg-[#111] border border-[#2a2a2a] p-10 sm:p-14 text-center">
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">Your vote runs the country.</h2>
+          <p className="text-[#cccccc] max-w-2xl mx-auto mb-8 leading-relaxed">
+            No election cycle. No manifesto theatre. Decide on every policy in real time, at the speed of the country, not the calendar.
+          </p>
+          <Link href="/policies" className="inline-block px-8 py-4 bg-white text-black font-bold text-sm uppercase tracking-wider hover:bg-[#cccccc] transition-colors">
+            Cast your first vote
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

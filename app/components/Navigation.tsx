@@ -4,13 +4,20 @@ import { useAuth } from '../context/AuthContext';
 import AuthModal from './AuthModal';
 import { useState } from 'react';
 import Link from 'next/link';
-
-
 import { usePathname } from 'next/navigation';
+
+const NAV_ITEMS: { href: string; label: string }[] = [
+  { href: '/', label: 'Home' },
+  { href: '/policies', label: 'Policies' },
+  { href: '/our-team', label: 'Our Team' },
+  { href: '/how-it-works', label: 'How It Works' },
+  { href: '/polls', label: 'Polls' },
+  { href: '/about', label: 'About' },
+];
 
 export default function Navigation() {
   const { user, logout } = useAuth();
-  
+
   if (typeof window !== 'undefined' && user) {
     const lastActive = localStorage.getItem('lastActive')
     const now = Date.now()
@@ -30,12 +37,6 @@ export default function Navigation() {
     setMobileMenuOpen(false);
   };
 
-  const openSignup = () => {
-    setAuthMode('signup');
-    setShowAuthModal(true);
-    setMobileMenuOpen(false);
-  };
-
   const isActive = (path: string) => {
     if (path === '/') return pathname === '/';
     return pathname?.startsWith(path);
@@ -46,60 +47,38 @@ export default function Navigation() {
       <nav className="bg-[#1a1a1a] border-b border-[#333333]/50 relative mb-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex-shrink-0" style={{marginLeft: "-16px"}}>
-              <div className="flex flex-col items-center">
-                <img
-                  src="/logo.png"
-                  alt="People's Chamber"
-                  style={{ height: '240px', width: 'auto', objectFit: 'contain' }}
-                />
-                <div className="text-center -mt-2">
-                  <div className="text-sm font-bold text-white tracking-widest">THE PEOPLES CHAMBER</div>
-                </div>
+            <Link href="/" className="flex-shrink-0 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center font-black text-lg tracking-tight">AI</div>
+              <div>
+                <div className="text-sm font-bold text-white tracking-widest leading-none">THE AI PARTY</div>
+                <div className="text-[10px] text-[#9a9a9a] tracking-wider mt-1">Every policy decided by you</div>
               </div>
             </Link>
-            
-            <div className="hidden lg:flex flex-col items-end gap-2">
-              <div className="flex items-center space-x-3">
-              <Link href="/" className={`px-3 py-1.5 text-sm ${isActive('/') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>
-                Home
-              </Link>
-              <Link href="/bills" className={`px-3 py-1.5 text-sm ${isActive('/bills') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>
-                Bills
-              </Link>
-              <Link href="/laws" className={`px-3 py-1.5 text-sm ${isActive('/laws') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>
-                Laws
-              </Link>
-              <Link href="/polls" className={`px-3 py-1.5 text-sm ${isActive('/polls') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>
-                People's Polls
-              </Link>
-              <Link href="/mps" className={`px-3 py-1.5 text-sm ${isActive('/mps') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>
-                MPs
-              </Link>
-              <Link href="/departments" className={`px-3 py-1.5 text-sm ${isActive('/departments') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>Departments</Link>
-              <Link href="/transparency" className={`px-3 py-1.5 text-sm ${isActive('/transparency') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>Transparency</Link>
-              <Link href="/search" className={`px-3 py-1.5 text-sm ${isActive('/search') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>Search</Link>
-              <Link href="/about" className={`px-3 py-1.5 text-sm ${isActive('/about') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>
-                About
-              </Link>
-              
-              {user ? (
-                <>
-                  <span className="text-white text-sm truncate max-w-[150px]">{user.email}</span>
-                  <button onClick={logout} className="px-3 py-1.5 text-[#c9c9c9] hover:text-white text-sm">
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <>
+
+            <div className="hidden lg:flex items-center gap-1">
+              {NAV_ITEMS.map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-3 py-1.5 text-sm transition-colors ${isActive(item.href) ? 'text-white font-semibold' : 'text-[#cccccc] hover:text-white'}`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <div className="ml-3 pl-3 border-l border-[#333333]">
+                {user ? (
+                  <>
+                    <span className="text-white text-sm truncate max-w-[150px] mr-2">{user.email}</span>
+                    <button onClick={logout} className="px-3 py-1.5 text-[#c9c9c9] hover:text-white text-sm">
+                      Logout
+                    </button>
+                  </>
+                ) : (
                   <button onClick={openLogin} className="px-3 py-1.5 text-[#c9c9c9] hover:text-white text-sm">
                     Login
                   </button>
-
-                </>
-              )}
+                )}
               </div>
-        
             </div>
 
             <button
@@ -119,29 +98,17 @@ export default function Navigation() {
 
           {mobileMenuOpen && (
             <div className="lg:hidden pb-4 border-t border-[#333333]/50 mt-2">
-              <div className="flex flex-col space-y-1 py-2">
-                <Link href="/" onClick={() => setMobileMenuOpen(false)} className={`px-3 py-2 text-sm ${isActive('/') ? 'text-[#ffffff] bg-transparent/10' : 'text-white'}`}>
-                  Home
-                </Link>
-                <Link href="/bills" onClick={() => setMobileMenuOpen(false)} className={`px-3 py-2 text-sm ${isActive('/bills') ? 'text-[#ffffff] bg-transparent/10' : 'text-white'}`}>
-                  Bills
-                </Link>
-                <Link href="/laws" onClick={() => setMobileMenuOpen(false)} className={`px-3 py-2 text-sm ${isActive('/laws') ? 'text-[#ffffff] bg-transparent/10' : 'text-white'}`}>
-                  Laws
-                </Link>
-                <Link href="/polls" onClick={() => setMobileMenuOpen(false)} className={`px-3 py-2 text-sm ${isActive('/polls') ? 'text-[#ffffff] bg-transparent/10' : 'text-white'}`}>
-                  People's Polls
-                </Link>
-                <Link href="/mps" onClick={() => setMobileMenuOpen(false)} className={`px-3 py-2 text-sm ${isActive('/mps') ? 'text-[#ffffff] bg-transparent/10' : 'text-white'}`}>
-                  MPs
-                </Link>
-                <Link href="/departments" className={`px-3 py-1.5 text-sm ${isActive('/departments') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>Departments</Link>
-              <Link href="/transparency" className={`px-3 py-1.5 text-sm ${isActive('/transparency') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>Transparency</Link>
-              <Link href="/search" className={`px-3 py-1.5 text-sm ${isActive('/search') ? 'text-[#ffffff] font-medium' : 'text-white hover:text-white'}`}>Search</Link>
-              <Link href="/about" onClick={() => setMobileMenuOpen(false)} className={`px-3 py-2 text-sm ${isActive('/about') ? 'text-[#ffffff] bg-transparent/10' : 'text-white'}`}>
-                  About
-                </Link>
-                
+              <div className="flex flex-col py-2">
+                {NAV_ITEMS.map(item => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`px-3 py-2 text-sm ${isActive(item.href) ? 'text-white font-semibold' : 'text-[#cccccc]'}`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
                 <div className="border-t border-[#333333]/50 mt-2 pt-2">
                   {user ? (
                     <>
@@ -151,24 +118,16 @@ export default function Navigation() {
                       </button>
                     </>
                   ) : (
-                    <>
-                      <button onClick={openLogin} className="w-full text-left px-3 py-2 text-[#c9c9c9] text-sm">
-                        Login
-                      </button>
-
-                    </>
+                    <button onClick={openLogin} className="w-full text-left px-3 py-2 text-[#c9c9c9] text-sm">
+                      Login
+                    </button>
                   )}
                 </div>
               </div>
             </div>
           )}
         </div>
-      <div className="border-b border-[#333333]/50">
-  
-      </div>
-
       </nav>
-
 
       <AuthModal
         isOpen={showAuthModal}
