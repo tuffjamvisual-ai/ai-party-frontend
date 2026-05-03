@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 const NAV_ITEMS: { href: string; label: string }[] = [
   { href: '/', label: 'Home' },
   { href: '/policies', label: 'Policies' },
+  { href: '/departments', label: 'Departments' },
   { href: '/our-team', label: 'Our Team' },
   { href: '/how-it-works', label: 'How It Works' },
   { href: '/polls', label: 'Polls' },
