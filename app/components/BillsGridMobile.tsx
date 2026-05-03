@@ -119,17 +119,17 @@ export default function BillsGridMobile({ initialBills }: Props) {
 
   return (
     <>
-      <div className="sticky top-20 z-40 bg-[#1a1a1a] px-4 py-3 border-b border-[#333333]">
+      <div className="sticky top-20 z-40 bg-[#002633] px-4 py-3 border-b border-[#405b6b]">
         <input
           type="text"
           placeholder="Search bills..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="max-w-xl mx-auto block px-4 py-2 bg-[#222222] text-white rounded-lg border border-[#333333] focus:border-[#ffffff] focus:outline-none"
+          className="max-w-xl mx-auto block px-4 py-2 bg-[#1c3849] text-white rounded-lg border border-[#405b6b] focus:border-[#ffffff] focus:outline-none"
         />
       </div>
 
-      <div className="sticky top-[108px] z-40 bg-[#1a1a1a] border-b border-[#333333] overflow-x-auto">
+      <div className="sticky top-[108px] z-40 bg-[#002633] border-b border-[#405b6b] overflow-x-auto">
         <div className="flex space-x-1 px-4 min-w-max">
           <button
             onClick={() => setActiveTab('latest')}
@@ -190,7 +190,7 @@ export default function BillsGridMobile({ initialBills }: Props) {
             <div
               key={bill.id}
               onClick={() => router.push(`/bills/${bill.id}`)}
-              className="bg-[#1a1a1a] border border-[#333333] rounded-lg p-4 active:bg-[#222222]"
+              className="bg-[#002633] border border-[#405b6b] rounded-lg p-4 active:bg-[#1c3849]"
             >
               {/* Show position number and total votes for debugging */}
               <div className="text-sm text-white mb-1">
@@ -202,9 +202,9 @@ export default function BillsGridMobile({ initialBills }: Props) {
               </h3>
 
               <div className="mb-3">
-                <div className="h-2 bg-[#222222] rounded-full overflow-hidden flex">
-                  <div className="bg-[#4a8a3a]" style={{ width: `${yesPercent}%` }} />
-                  <div className="bg-[#8a3a3a]" style={{ width: `${noPercent}%` }} />
+                <div className="h-2 bg-[#1c3849] rounded-full overflow-hidden flex">
+                  <div className="bg-[#ffffff]" style={{ width: `${yesPercent}%` }} />
+                  <div className="bg-[#C9C9C9]" style={{ width: `${noPercent}%` }} />
                 </div>
                 <div className="flex justify-between text-sm text-white mt-1">
                   <span>✓ {yesPercent}%</span>
@@ -220,9 +220,9 @@ export default function BillsGridMobile({ initialBills }: Props) {
                   className={`flex-1 py-2 rounded text-sm font-medium ${
                     hasVoted
                       ? userVotes[bill.id] === 'yes'
-                        ? 'bg-[#222222] text-white'
-                        : 'bg-[#222222] text-white'
-                      : 'bg-[#222222] active:bg-[#222222] text-white'
+                        ? 'bg-[#1c3849] text-white'
+                        : 'bg-[#1c3849] text-white'
+                      : 'bg-[#1c3849] active:bg-[#1c3849] text-white'
                   }`}
                 >
                   {hasVoted && userVotes[bill.id] === 'yes' ? '✓ Supported' : 'Support'}
@@ -233,9 +233,9 @@ export default function BillsGridMobile({ initialBills }: Props) {
                   className={`flex-1 py-2 rounded text-sm font-medium ${
                     hasVoted
                       ? userVotes[bill.id] === 'no'
-                        ? 'bg-[#8a3a3a] text-white'
-                        : 'bg-[#222222] text-white'
-                      : 'bg-[#8a3a3a] active:bg-[#8a3a3a] text-white'
+                        ? 'bg-[#C9C9C9] text-white'
+                        : 'bg-[#1c3849] text-white'
+                      : 'bg-[#C9C9C9] active:bg-[#C9C9C9] text-white'
                   }`}
                 >
                   {hasVoted && userVotes[bill.id] === 'no' ? '✓ Opposed' : 'Oppose'}

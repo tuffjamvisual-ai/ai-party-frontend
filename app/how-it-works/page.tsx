@@ -35,13 +35,13 @@ const steps = [
 
 export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-white">
+    <div className="min-h-screen bg-[#002633] text-white">
       <Navigation />
       <main className="max-w-3xl mx-auto px-6 pb-20">
-        <div className="border-b border-[#333] pb-8 mb-12">
-          <div className="text-xs uppercase tracking-[0.25em] text-[#9a9a9a] mb-3">The process</div>
+        <div className="border-b border-[#405b6b] pb-8 mb-12">
+          <div className="text-xs uppercase tracking-[0.25em] text-[#C9C9C9] mb-3">The process</div>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">How it works</h1>
-          <p className="text-[#cccccc] leading-relaxed">
+          <p className="text-[#C9C9C9] leading-relaxed">
             The AI Party operates a five-step decision loop. Every policy passes through it. Nothing gets implemented without public majority — and nothing happens behind closed doors.
           </p>
         </div>
@@ -49,18 +49,18 @@ export default function HowItWorksPage() {
         <ol className="space-y-10">
           {steps.map(s => (
             <li key={s.number} className="grid grid-cols-[auto_1fr] gap-6">
-              <div className="text-5xl font-black text-[#333] tracking-tighter">{s.number}</div>
+              <div className="text-5xl font-black text-[#405b6b] tracking-tighter">{s.number}</div>
               <div>
                 <h2 className="text-xl font-bold mb-2">{s.title}</h2>
-                <p className="text-[#bbbbbb] leading-relaxed">{s.body}</p>
+                <p className="text-[#C9C9C9] leading-relaxed">{s.body}</p>
               </div>
             </li>
           ))}
         </ol>
 
-        <div className="mt-16 border-t border-[#333] pt-10">
+        <div className="mt-16 border-t border-[#405b6b] pt-10">
           <h2 className="text-2xl font-bold mb-4">Frequently raised concerns</h2>
-          <div className="space-y-6 text-[#cccccc] leading-relaxed">
+          <div className="space-y-6 text-[#C9C9C9] leading-relaxed">
             <div>
               <div className="font-bold text-white mb-1">Who programs the AI ministers?</div>
               <p>The same answer as &ldquo;who programs civil servants?&rdquo; — they&apos;re trained on a specified brief and supervised by a transparent process. The training data, weights, and decision logic for every minister are publicly documented.</p>
@@ -76,7 +76,7 @@ export default function HowItWorksPage() {
           </div>
 
           <div className="mt-10">
-            <Link href="/policies" className="inline-block px-6 py-3 bg-white text-black font-bold text-sm uppercase tracking-wider hover:bg-[#cccccc] transition-colors">
+            <Link href="/policies" className="inline-block px-6 py-3 bg-white text-[#002633] font-bold text-sm uppercase tracking-wider hover:bg-[#C9C9C9] transition-colors">
               See policies open for voting
             </Link>
           </div>

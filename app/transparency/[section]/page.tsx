@@ -64,7 +64,7 @@ export default async function TransparencySectionPage({
   const totalCount = total ?? 0
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-white">
+    <div className="min-h-screen bg-[#002633] text-white">
       <Navigation />
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
         <Link
@@ -74,7 +74,7 @@ export default async function TransparencySectionPage({
           ← Transparency Hub
         </Link>
 
-        <header className="border-b border-[#333333] pb-10 mb-10">
+        <header className="border-b border-[#405b6b] pb-10 mb-10">
           <p className="text-[13px] uppercase tracking-[0.3em] font-medium mb-4" style={{ color: ACCENT }}>
             Dataset
           </p>

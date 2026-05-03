@@ -137,13 +137,13 @@ export default function CommentsModal({ isOpen, onClose, billId, billTitle }: Pr
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-[#1a1a1a]/90 flex items-center justify-center z-50 p-4" onClick={onClose}>
+    <div className="fixed inset-0 bg-[#002633]/90 flex items-center justify-center z-50 p-4" onClick={onClose}>
       <div 
-        className="bg-[#1a1a1a] rounded-lg w-full max-w-2xl max-h-[80vh] flex flex-col border border-[#333333]"
+        className="bg-[#002633] rounded-lg w-full max-w-2xl max-h-[80vh] flex flex-col border border-[#405b6b]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-4 border-b border-[#333333] flex justify-between items-start">
+        <div className="p-4 border-b border-[#405b6b] flex justify-between items-start">
           <div className="flex-1 pr-4">
             <h2 className="text-lg font-semibold text-white mb-1">Comments</h2>
             <p className="text-sm text-white line-clamp-2">{billTitle}</p>
@@ -186,7 +186,7 @@ export default function CommentsModal({ isOpen, onClose, billId, billTitle }: Pr
                       </button>
                       <button
                         onClick={() => handleDelete(comment.id)}
-                        className="text-sm text-[#8a3a3a] hover:text-[#8a3a3a]"
+                        className="text-sm text-[#C9C9C9] hover:text-[#C9C9C9]"
                       >
                         Delete
                       </button>
@@ -199,13 +199,13 @@ export default function CommentsModal({ isOpen, onClose, billId, billTitle }: Pr
                     <textarea
                       value={editText}
                       onChange={(e) => setEditText(e.target.value)}
-                      className="w-full bg-[#1a1a1a] border border-[#333333] rounded px-3 py-2 text-white text-sm resize-none"
+                      className="w-full bg-[#002633] border border-[#405b6b] rounded px-3 py-2 text-white text-sm resize-none"
                       rows={3}
                     />
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleEdit(comment.id)}
-                        className="px-3 py-1 bg-[#ffffff] hover:bg-[#c9c9c9] text-white text-sm rounded"
+                        className="px-3 py-1 bg-[#ffffff] hover:bg-[#C9C9C9] text-white text-sm rounded"
                       >
                         Save
                       </button>
@@ -214,14 +214,14 @@ export default function CommentsModal({ isOpen, onClose, billId, billTitle }: Pr
                           setEditingId(null);
                           setEditText('');
                         }}
-                        className="px-3 py-1 bg-[#222222] hover:bg-[#222222] text-white text-sm rounded"
+                        className="px-3 py-1 bg-[#1c3849] hover:bg-[#1c3849] text-white text-sm rounded"
                       >
                         Cancel
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <p className="text-[#c9c9c9] text-sm whitespace-pre-wrap">{comment.text}</p>
+                  <p className="text-[#C9C9C9] text-sm whitespace-pre-wrap">{comment.text}</p>
                 )}
               </div>
             ))
@@ -230,9 +230,9 @@ export default function CommentsModal({ isOpen, onClose, billId, billTitle }: Pr
 
         {/* Comment Input */}
         {user ? (
-          <div className="p-4 border-t border-[#333333]">
+          <div className="p-4 border-t border-[#405b6b]">
             {error && (
-              <div className="mb-3 p-2 bg-[#8a3a3a]/20 border border-[#8a3a3a]/50 rounded text-[#8a3a3a] text-sm">
+              <div className="mb-3 p-2 bg-[#C9C9C9]/20 border border-[#C9C9C9]/50 rounded text-[#C9C9C9] text-sm">
                 {error}
               </div>
             )}
@@ -241,20 +241,20 @@ export default function CommentsModal({ isOpen, onClose, billId, billTitle }: Pr
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Write a comment..."
-                className="w-full bg-[#222222]/50 border border-[#333333] rounded-lg px-3 py-2 text-white placeholder-[#7697a2] text-sm resize-none focus:outline-none focus:border-[#ffffff]"
+                className="w-full bg-[#1c3849]/50 border border-[#405b6b] rounded-lg px-3 py-2 text-white placeholder-[#405b6b] text-sm resize-none focus:outline-none focus:border-[#ffffff]"
                 rows={3}
               />
               <button
                 type="submit"
                 disabled={loading || !newComment.trim()}
-                className="w-full bg-[#ffffff] hover:bg-[#c9c9c9] text-white py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#ffffff] hover:bg-[#C9C9C9] text-white py-2 rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Posting...' : 'Post Comment'}
               </button>
             </form>
           </div>
         ) : (
-          <div className="p-4 border-t border-[#333333] text-center">
+          <div className="p-4 border-t border-[#405b6b] text-center">
             <p className="text-white text-sm">Log in to leave a comment</p>
           </div>
         )}

@@ -62,16 +62,16 @@ export default function PolicyVote({ policyId, initialSupport, initialOppose }: 
   }
 
   return (
-    <section className="bg-[#0d0d0d] border border-[#333] p-6">
-      <div className="text-xs uppercase tracking-[0.25em] text-[#9a9a9a] mb-4">Cast your vote</div>
+    <section className="bg-[#1c3849] border border-[#405b6b] p-6">
+      <div className="text-xs uppercase tracking-[0.25em] text-[#C9C9C9] mb-4">Cast your vote</div>
 
       {total > 0 && (
         <>
-          <div className="h-3 bg-[#222] flex overflow-hidden mb-2">
-            <div className="h-full bg-[#4a8a3a] transition-all" style={{ width: `${supportPct}%` }} />
-            <div className="h-full bg-[#8a3a3a] transition-all" style={{ width: `${opposePct}%` }} />
+          <div className="h-3 bg-[#1c3849] flex overflow-hidden mb-2">
+            <div className="h-full bg-[#ffffff] transition-all" style={{ width: `${supportPct}%` }} />
+            <div className="h-full bg-[#C9C9C9] transition-all" style={{ width: `${opposePct}%` }} />
           </div>
-          <div className="flex justify-between text-xs text-[#9a9a9a] mb-5">
+          <div className="flex justify-between text-xs text-[#C9C9C9] mb-5">
             <span>{supportPct}% support · {support}</span>
             <span>{total} votes</span>
             <span>{oppose} · {opposePct}% oppose</span>
@@ -85,10 +85,10 @@ export default function PolicyVote({ policyId, initialSupport, initialOppose }: 
           disabled={!!userVote || submitting}
           className={`py-3 font-bold text-sm uppercase tracking-wider transition-colors border ${
             userVote === 'support'
-              ? 'bg-[#4a8a3a] border-[#4a8a3a] text-white'
+              ? 'bg-[#ffffff] border-[#ffffff] text-white'
               : userVote
-              ? 'bg-[#1a1a1a] border-[#333] text-[#666] cursor-not-allowed'
-              : 'bg-[#1a1a1a] border-[#4a8a3a] text-[#7ec973] hover:bg-[#4a8a3a] hover:text-white'
+              ? 'bg-[#002633] border-[#405b6b] text-[#C9C9C9] cursor-not-allowed'
+              : 'bg-[#002633] border-[#ffffff] text-[#ffffff] hover:bg-[#ffffff] hover:text-white'
           }`}
         >
           {userVote === 'support' ? '✓ Supported' : 'Support'}
@@ -98,10 +98,10 @@ export default function PolicyVote({ policyId, initialSupport, initialOppose }: 
           disabled={!!userVote || submitting}
           className={`py-3 font-bold text-sm uppercase tracking-wider transition-colors border ${
             userVote === 'oppose'
-              ? 'bg-[#8a3a3a] border-[#8a3a3a] text-white'
+              ? 'bg-[#C9C9C9] border-[#C9C9C9] text-white'
               : userVote
-              ? 'bg-[#1a1a1a] border-[#333] text-[#666] cursor-not-allowed'
-              : 'bg-[#1a1a1a] border-[#8a3a3a] text-[#e07b7b] hover:bg-[#8a3a3a] hover:text-white'
+              ? 'bg-[#002633] border-[#405b6b] text-[#C9C9C9] cursor-not-allowed'
+              : 'bg-[#002633] border-[#C9C9C9] text-[#C9C9C9] hover:bg-[#C9C9C9] hover:text-white'
           }`}
         >
           {userVote === 'oppose' ? '✓ Opposed' : 'Oppose'}
@@ -109,10 +109,10 @@ export default function PolicyVote({ policyId, initialSupport, initialOppose }: 
       </div>
 
       {!user && (
-        <div className="mt-3 text-xs text-[#9a9a9a]">Log in to record your vote and shift the live tally.</div>
+        <div className="mt-3 text-xs text-[#C9C9C9]">Log in to record your vote and shift the live tally.</div>
       )}
-      {error && <div className="mt-3 text-xs text-[#e07b7b]">{error}</div>}
-      {userVote && <div className="mt-3 text-xs text-[#9a9a9a]">Your vote is locked in.</div>}
+      {error && <div className="mt-3 text-xs text-[#C9C9C9]">{error}</div>}
+      {userVote && <div className="mt-3 text-xs text-[#C9C9C9]">Your vote is locked in.</div>}
     </section>
   )
 }

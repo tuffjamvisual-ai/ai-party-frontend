@@ -82,10 +82,10 @@ export default async function MPProfilePage({ params }: PageProps) {
     .eq('member_id', memberId)
     .order('category_sort_order', { ascending: true })
 
-  const partyColour = mp.party_colour ? '#' + mp.party_colour.replace('#', '') : '#7697a2'
+  const partyColour = mp.party_colour ? '#' + mp.party_colour.replace('#', '') : '#405b6b'
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a]">
+    <div className="min-h-screen bg-[#002633]">
       <Navigation />
       
       <main className="max-w-7xl mx-auto px-6 py-6">
@@ -98,7 +98,7 @@ export default async function MPProfilePage({ params }: PageProps) {
         </Link>
 
         {/* Header with party colour gradient */}
-        <div className="rounded-xl overflow-hidden mb-6 relative" style={{ background: `linear-gradient(135deg, ${partyColour}33 0%, #1a1a1a 60%)`, border: `1px solid ${partyColour}40` }}>
+        <div className="rounded-xl overflow-hidden mb-6 relative" style={{ background: `linear-gradient(135deg, ${partyColour}33 0%, #002633 60%)`, border: `1px solid ${partyColour}40` }}>
           <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at top left, ${partyColour}, transparent 60%)` }} />
           <div className="relative p-6 flex items-center gap-6">
             <div className="relative flex-shrink-0">
@@ -121,7 +121,7 @@ export default async function MPProfilePage({ params }: PageProps) {
                 {mp.display_name || mp.name}
               </h1>
               {mp.constituency && (
-                <p className="text-lg text-[#c9c9c9] mb-3">MP for {mp.constituency}</p>
+                <p className="text-lg text-[#C9C9C9] mb-3">MP for {mp.constituency}</p>
               )}
               {mp.party && (
                 <span className="inline-block px-4 py-1.5 text-sm font-semibold rounded-full text-white" style={{ backgroundColor: partyColour }}>

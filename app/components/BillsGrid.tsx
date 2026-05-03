@@ -141,14 +141,14 @@ export default function BillsGrid({ initialBills }: Props) {
             <div
               key={bill.id}
               onClick={() => router.push(`/bills/${bill.id}`)}
-              className="bg-[#1a1a1a] border border-[#333333] rounded-lg p-4 cursor-pointer hover:border-[#ffffff] transition-colors"
+              className="bg-[#002633] border border-[#405b6b] rounded-lg p-4 cursor-pointer hover:border-[#ffffff] transition-colors"
             >
               <h3 className="text-white font-medium text-sm mb-3 line-clamp-2">{bill.title}</h3>
 
               <div className="mb-3">
-                <div className="h-2 bg-[#222222] rounded-full overflow-hidden flex">
-                  <div className="bg-[#4a8a3a]" style={{ width: `${yesPercent}%` }} />
-                  <div className="bg-[#8a3a3a]" style={{ width: `${noPercent}%` }} />
+                <div className="h-2 bg-[#1c3849] rounded-full overflow-hidden flex">
+                  <div className="bg-[#ffffff]" style={{ width: `${yesPercent}%` }} />
+                  <div className="bg-[#C9C9C9]" style={{ width: `${noPercent}%` }} />
                 </div>
                 <div className="flex justify-between text-sm text-white mt-1">
                   <span>✓ {yesPercent}%</span>
@@ -161,14 +161,14 @@ export default function BillsGrid({ initialBills }: Props) {
                 <button
                   onClick={() => handleVote(bill.id, 'yes')}
                   disabled={hasVoted}
-                  className={`flex-1 py-2 rounded text-sm font-medium ${hasVoted ? userVotes[bill.id] === 'yes' ? 'bg-[#222222] text-white' : 'bg-[#222222] text-white' : 'bg-[#222222] hover:bg-[#222222] text-white'}`}
+                  className={`flex-1 py-2 rounded text-sm font-medium ${hasVoted ? userVotes[bill.id] === 'yes' ? 'bg-[#1c3849] text-white' : 'bg-[#1c3849] text-white' : 'bg-[#1c3849] hover:bg-[#1c3849] text-white'}`}
                 >
                   {hasVoted && userVotes[bill.id] === 'yes' ? '✓ Supported' : 'Support'}
                 </button>
                 <button
                   onClick={() => handleVote(bill.id, 'no')}
                   disabled={hasVoted}
-                  className={`flex-1 py-2 rounded text-sm font-medium ${hasVoted ? userVotes[bill.id] === 'no' ? 'bg-[#8a3a3a] text-white' : 'bg-[#222222] text-white' : 'bg-[#8a3a3a] hover:bg-[#8a3a3a] text-white'}`}
+                  className={`flex-1 py-2 rounded text-sm font-medium ${hasVoted ? userVotes[bill.id] === 'no' ? 'bg-[#C9C9C9] text-white' : 'bg-[#1c3849] text-white' : 'bg-[#C9C9C9] hover:bg-[#C9C9C9] text-white'}`}
                 >
                   {hasVoted && userVotes[bill.id] === 'no' ? '✓ Opposed' : 'Oppose'}
                 </button>
@@ -186,11 +186,11 @@ export default function BillsGrid({ initialBills }: Props) {
 
       {paginatedBills.length > 0 && totalPages > 1 && (
         <div className="flex items-center justify-center gap-2">
-          <button onClick={() => setCurrentPage(1)} disabled={currentPage === 1} className="px-3 py-1.5 bg-[#222222] text-[#c9c9c9] rounded text-sm hover:bg-[#222222] disabled:opacity-30">First</button>
-          <button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="px-3 py-1.5 bg-[#222222] text-[#c9c9c9] rounded text-sm hover:bg-[#222222] disabled:opacity-30">Previous</button>
+          <button onClick={() => setCurrentPage(1)} disabled={currentPage === 1} className="px-3 py-1.5 bg-[#1c3849] text-[#C9C9C9] rounded text-sm hover:bg-[#1c3849] disabled:opacity-30">First</button>
+          <button onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} className="px-3 py-1.5 bg-[#1c3849] text-[#C9C9C9] rounded text-sm hover:bg-[#1c3849] disabled:opacity-30">Previous</button>
           <div className="px-4 py-1.5 bg-[#ffffff] text-white rounded text-sm font-medium">{currentPage} / {totalPages}</div>
-          <button onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="px-3 py-1.5 bg-[#222222] text-[#c9c9c9] rounded text-sm hover:bg-[#222222] disabled:opacity-30">Next</button>
-          <button onClick={() => setCurrentPage(totalPages)} disabled={currentPage === totalPages} className="px-3 py-1.5 bg-[#222222] text-[#c9c9c9] rounded text-sm hover:bg-[#222222] disabled:opacity-30">Last</button>
+          <button onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="px-3 py-1.5 bg-[#1c3849] text-[#C9C9C9] rounded text-sm hover:bg-[#1c3849] disabled:opacity-30">Next</button>
+          <button onClick={() => setCurrentPage(totalPages)} disabled={currentPage === totalPages} className="px-3 py-1.5 bg-[#1c3849] text-[#C9C9C9] rounded text-sm hover:bg-[#1c3849] disabled:opacity-30">Last</button>
         </div>
       )}
 

@@ -51,40 +51,40 @@ export default function HomePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0a0f1a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#002633] flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500 mx-auto"></div>
-          <p className="text-gray-400 mt-6">Loading bills...</p>
+          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white mx-auto"></div>
+          <p className="text-[#C9C9C9] mt-6">Loading bills...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0f1a]">
-      <nav className="bg-black/40 backdrop-blur-sm border-b border-gray-800/50 sticky top-0 z-50">
+    <div className="min-h-screen bg-[#002633]">
+      <nav className="bg-[#002633]/40 backdrop-blur-sm border-b border-[#1c3849]/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-14">
             <div className="flex items-center space-x-2">
-              <div className="w-7 h-7 bg-blue-600 rounded"></div>
+              <div className="w-7 h-7 bg-white rounded"></div>
               <h1 className="text-lg font-bold text-white">People's Chamber</h1>
             </div>
             
             <div className="flex space-x-1">
-              <a href="#" className="px-3 py-1.5 text-blue-400 font-medium text-sm">Bills</a>
-              <a href="#" className="px-3 py-1.5 text-gray-400 hover:text-white text-sm">Laws</a>
-              <a href="#" className="px-3 py-1.5 text-gray-400 hover:text-white text-sm">Polls</a>
-              <a href="#" className="px-3 py-1.5 text-gray-400 hover:text-white text-sm">MPs</a>
-              <a href="#" className="px-3 py-1.5 text-gray-400 hover:text-white text-sm">About</a>
+              <a href="#" className="px-3 py-1.5 text-white font-medium text-sm">Bills</a>
+              <a href="#" className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm">Laws</a>
+              <a href="#" className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm">Polls</a>
+              <a href="#" className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm">MPs</a>
+              <a href="#" className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm">About</a>
             </div>
 
             <div className="flex items-center space-x-3">
               {user ? (
                 <>
-                  <span className="text-gray-400 text-sm">{user.email}</span>
+                  <span className="text-[#C9C9C9] text-sm">{user.email}</span>
                   <button 
                     onClick={logout}
-                    className="px-3 py-1.5 text-gray-300 hover:text-white text-sm"
+                    className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm"
                   >
                     Logout
                   </button>
@@ -93,13 +93,13 @@ export default function HomePage() {
                 <>
                   <button 
                     onClick={openLogin}
-                    className="px-3 py-1.5 text-gray-300 hover:text-white text-sm"
+                    className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm"
                   >
                     Login
                   </button>
                   <button 
                     onClick={openSignup}
-                    className="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm font-medium"
+                    className="px-4 py-1.5 bg-white hover:bg-white text-white rounded text-sm font-medium"
                   >
                     Sign Up
                   </button>

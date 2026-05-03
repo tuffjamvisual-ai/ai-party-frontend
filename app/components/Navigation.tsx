@@ -44,14 +44,14 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="bg-[#1a1a1a] border-b border-[#333333]/50 relative mb-10">
+      <nav className="bg-[#002633] border-b border-[#405b6b]/50 relative mb-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex-shrink-0 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center font-black text-lg tracking-tight">AI</div>
+              <div className="w-10 h-10 rounded-full bg-white text-[#002633] flex items-center justify-center font-black text-lg tracking-tight">AI</div>
               <div>
                 <div className="text-sm font-bold text-white tracking-widest leading-none">THE AI PARTY</div>
-                <div className="text-[10px] text-[#9a9a9a] tracking-wider mt-1">Every policy decided by you</div>
+                <div className="text-[10px] text-[#C9C9C9] tracking-wider mt-1">Every policy decided by you</div>
               </div>
             </Link>
 
@@ -60,21 +60,21 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-1.5 text-sm transition-colors ${isActive(item.href) ? 'text-white font-semibold' : 'text-[#cccccc] hover:text-white'}`}
+                  className={`px-3 py-1.5 text-sm transition-colors ${isActive(item.href) ? 'text-white font-semibold' : 'text-[#C9C9C9] hover:text-white'}`}
                 >
                   {item.label}
                 </Link>
               ))}
-              <div className="ml-3 pl-3 border-l border-[#333333]">
+              <div className="ml-3 pl-3 border-l border-[#405b6b]">
                 {user ? (
                   <>
                     <span className="text-white text-sm truncate max-w-[150px] mr-2">{user.email}</span>
-                    <button onClick={logout} className="px-3 py-1.5 text-[#c9c9c9] hover:text-white text-sm">
+                    <button onClick={logout} className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm">
                       Logout
                     </button>
                   </>
                 ) : (
-                  <button onClick={openLogin} className="px-3 py-1.5 text-[#c9c9c9] hover:text-white text-sm">
+                  <button onClick={openLogin} className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm">
                     Login
                   </button>
                 )}
@@ -97,28 +97,28 @@ export default function Navigation() {
           </div>
 
           {mobileMenuOpen && (
-            <div className="lg:hidden pb-4 border-t border-[#333333]/50 mt-2">
+            <div className="lg:hidden pb-4 border-t border-[#405b6b]/50 mt-2">
               <div className="flex flex-col py-2">
                 {NAV_ITEMS.map(item => (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`px-3 py-2 text-sm ${isActive(item.href) ? 'text-white font-semibold' : 'text-[#cccccc]'}`}
+                    className={`px-3 py-2 text-sm ${isActive(item.href) ? 'text-white font-semibold' : 'text-[#C9C9C9]'}`}
                   >
                     {item.label}
                   </Link>
                 ))}
-                <div className="border-t border-[#333333]/50 mt-2 pt-2">
+                <div className="border-t border-[#405b6b]/50 mt-2 pt-2">
                   {user ? (
                     <>
                       <div className="px-3 py-2 text-white text-sm truncate">{user.email}</div>
-                      <button onClick={() => { logout(); setMobileMenuOpen(false); }} className="w-full text-left px-3 py-2 text-[#c9c9c9] text-sm">
+                      <button onClick={() => { logout(); setMobileMenuOpen(false); }} className="w-full text-left px-3 py-2 text-[#C9C9C9] text-sm">
                         Logout
                       </button>
                     </>
                   ) : (
-                    <button onClick={openLogin} className="w-full text-left px-3 py-2 text-[#c9c9c9] text-sm">
+                    <button onClick={openLogin} className="w-full text-left px-3 py-2 text-[#C9C9C9] text-sm">
                       Login
                     </button>
                   )}

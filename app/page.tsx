@@ -37,52 +37,52 @@ export default async function HomePage() {
   const members = (membersData ?? []) as Member[]
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-white">
+    <div className="min-h-screen bg-[#002633] text-white">
       <Navigation />
 
       {/* HERO */}
-      <section className="max-w-6xl mx-auto px-6 pt-8 pb-16 border-b border-[#333]">
-        <div className="text-xs uppercase tracking-[0.3em] text-[#9a9a9a] mb-6">Manifesto · 2026</div>
+      <section className="max-w-6xl mx-auto px-6 pt-8 pb-16 border-b border-[#405b6b]">
+        <div className="text-xs uppercase tracking-[0.3em] text-[#C9C9C9] mb-6">Manifesto · 2026</div>
         <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-8 max-w-5xl">
           The first political party run by AI.{' '}
-          <span className="text-[#9a9a9a]">Every policy decided by you.</span>
+          <span className="text-[#C9C9C9]">Every policy decided by you.</span>
         </h1>
-        <p className="text-lg sm:text-xl text-[#cccccc] max-w-3xl leading-relaxed mb-10">
+        <p className="text-lg sm:text-xl text-[#C9C9C9] max-w-3xl leading-relaxed mb-10">
           Six AI ministers draft policy. The public votes. Nothing becomes law without a majority. No backroom deals,
           no five-year manifestos, no waiting for the next election.
         </p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/policies" className="px-7 py-3.5 bg-white text-black font-bold text-sm uppercase tracking-wider hover:bg-[#cccccc] transition-colors">
+          <Link href="/policies" className="px-7 py-3.5 bg-white text-[#002633] font-bold text-sm uppercase tracking-wider hover:bg-[#C9C9C9] transition-colors">
             Vote on policies
           </Link>
-          <Link href="/how-it-works" className="px-7 py-3.5 bg-transparent border border-[#555] text-white font-bold text-sm uppercase tracking-wider hover:border-white transition-colors">
+          <Link href="/how-it-works" className="px-7 py-3.5 bg-transparent border border-[#405b6b] text-white font-bold text-sm uppercase tracking-wider hover:border-white transition-colors">
             How it works
           </Link>
         </div>
       </section>
 
       {/* LIVE POLICY VOTING */}
-      <section className="max-w-6xl mx-auto px-6 py-16 border-b border-[#333]">
+      <section className="max-w-6xl mx-auto px-6 py-16 border-b border-[#405b6b]">
         <div className="flex items-baseline justify-between mb-8">
           <div>
-            <div className="text-xs uppercase tracking-[0.25em] text-[#9a9a9a] mb-2">Open for voting</div>
+            <div className="text-xs uppercase tracking-[0.25em] text-[#C9C9C9] mb-2">Open for voting</div>
             <h2 className="text-3xl font-black tracking-tight">Live policy votes</h2>
           </div>
-          <Link href="/policies" className="text-sm text-[#9a9a9a] hover:text-white tracking-wider uppercase">
+          <Link href="/policies" className="text-sm text-[#C9C9C9] hover:text-white tracking-wider uppercase">
             See all →
           </Link>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {featured.map(p => (
-            <div key={p.id} className="bg-[#111] border border-[#2a2a2a] p-6 flex flex-col">
+            <div key={p.id} className="bg-[#1c3849] border border-[#1c3849] p-6 flex flex-col">
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-[10px] uppercase tracking-[0.2em] bg-white text-black px-2 py-0.5 font-bold">{p.area}</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] bg-white text-[#002633] px-2 py-0.5 font-bold">{p.area}</span>
               </div>
-              <Link href={`/policies/${p.id}`} className="block mb-3 hover:text-[#cccccc] transition-colors">
+              <Link href={`/policies/${p.id}`} className="block mb-3 hover:text-[#C9C9C9] transition-colors">
                 <h3 className="text-lg font-bold leading-snug">{p.title}</h3>
               </Link>
-              <p className="text-sm text-[#bbbbbb] leading-relaxed mb-5 line-clamp-3 flex-1">{p.summary}</p>
+              <p className="text-sm text-[#C9C9C9] leading-relaxed mb-5 line-clamp-3 flex-1">{p.summary}</p>
               <PolicyVote
                 policyId={p.id}
                 initialSupport={p.vote_count_support}
@@ -94,23 +94,23 @@ export default async function HomePage() {
       </section>
 
       {/* THE CABINET */}
-      <section className="max-w-6xl mx-auto px-6 py-16 border-b border-[#333]">
+      <section className="max-w-6xl mx-auto px-6 py-16 border-b border-[#405b6b]">
         <div className="flex items-baseline justify-between mb-8">
           <div>
-            <div className="text-xs uppercase tracking-[0.25em] text-[#9a9a9a] mb-2">The Cabinet</div>
+            <div className="text-xs uppercase tracking-[0.25em] text-[#C9C9C9] mb-2">The Cabinet</div>
             <h2 className="text-3xl font-black tracking-tight">Six AI ministers</h2>
           </div>
-          <Link href="/our-team" className="text-sm text-[#9a9a9a] hover:text-white tracking-wider uppercase">
+          <Link href="/our-team" className="text-sm text-[#C9C9C9] hover:text-white tracking-wider uppercase">
             Meet the team →
           </Link>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {members.map(m => (
-            <div key={m.id} className="bg-[#111] border border-[#2a2a2a] p-4 text-center">
-              <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-br from-white to-[#aaa] text-black flex items-center justify-center font-black text-sm">
+            <div key={m.id} className="bg-[#1c3849] border border-[#1c3849] p-4 text-center">
+              <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-br from-white to-[#C9C9C9] text-[#002633] flex items-center justify-center font-black text-sm">
                 {m.name.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase()}
               </div>
-              <div className="text-[10px] uppercase tracking-[0.15em] text-[#9a9a9a] mb-1">{m.role}</div>
+              <div className="text-[10px] uppercase tracking-[0.15em] text-[#C9C9C9] mb-1">{m.role}</div>
               <div className="text-sm font-bold leading-tight">{m.name}</div>
             </div>
           ))}
@@ -119,12 +119,12 @@ export default async function HomePage() {
 
       {/* CTA */}
       <section className="max-w-6xl mx-auto px-6 py-20">
-        <div className="bg-[#111] border border-[#2a2a2a] p-10 sm:p-14 text-center">
+        <div className="bg-[#1c3849] border border-[#1c3849] p-10 sm:p-14 text-center">
           <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">Your vote runs the country.</h2>
-          <p className="text-[#cccccc] max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-[#C9C9C9] max-w-2xl mx-auto mb-8 leading-relaxed">
             No election cycle. No manifesto theatre. Decide on every policy in real time, at the speed of the country, not the calendar.
           </p>
-          <Link href="/policies" className="inline-block px-8 py-4 bg-white text-black font-bold text-sm uppercase tracking-wider hover:bg-[#cccccc] transition-colors">
+          <Link href="/policies" className="inline-block px-8 py-4 bg-white text-[#002633] font-bold text-sm uppercase tracking-wider hover:bg-[#C9C9C9] transition-colors">
             Cast your first vote
           </Link>
         </div>

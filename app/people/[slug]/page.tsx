@@ -40,7 +40,7 @@ export default function PersonPage({ params }: { params: Promise<{ slug: string 
   }, [slug]);
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a]">
+    <div className="min-h-screen bg-[#002633]">
       <Navigation />
       <main className="max-w-3xl mx-auto px-4 sm:px-6 pb-12">
         <Link href="/departments" className="inline-flex items-center gap-2 text-white hover:text-white mb-6 text-sm">
@@ -58,26 +58,26 @@ export default function PersonPage({ params }: { params: Promise<{ slug: string 
         {person && (
           <>
             {/* Header */}
-            <div className="bg-[#1a1a1a] border border-[#333333] rounded-xl p-6 mb-6 flex items-start gap-6">
+            <div className="bg-[#002633] border border-[#405b6b] rounded-xl p-6 mb-6 flex items-start gap-6">
               {person.photo ? (
                 <img src={person.photo} alt={person.name}
-                  className="w-32 h-32 rounded-full object-cover border-2 border-[#333333] flex-shrink-0" />
+                  className="w-32 h-32 rounded-full object-cover border-2 border-[#405b6b] flex-shrink-0" />
               ) : (
-                <div className="w-32 h-32 rounded-full bg-[#222222] flex items-center justify-center text-3xl font-bold text-white flex-shrink-0">
+                <div className="w-32 h-32 rounded-full bg-[#1c3849] flex items-center justify-center text-3xl font-bold text-white flex-shrink-0">
                   {person.name.charAt(0)}
                 </div>
               )}
               <div>
                 <h1 className="text-2xl font-bold text-white mb-1">{person.name}</h1>
                 {person.currentRoles.length > 0 && (
-                  <p className="text-[#c9c9c9] text-sm">{person.currentRoles[0].title}</p>
+                  <p className="text-[#C9C9C9] text-sm">{person.currentRoles[0].title}</p>
                 )}
               </div>
             </div>
 
             {/* Current Roles */}
             {person.currentRoles.length > 0 && (
-              <div className="bg-[#1a1a1a] border border-[#333333] rounded-xl p-6 mb-6">
+              <div className="bg-[#002633] border border-[#405b6b] rounded-xl p-6 mb-6">
                 <h2 className="text-lg font-semibold text-white mb-4">Current Role{person.currentRoles.length > 1 ? 's' : ''}</h2>
                 {person.currentRoles.map((role, i) => (
                   <div key={i} className="mb-4 last:mb-0">
@@ -87,7 +87,7 @@ export default function PersonPage({ params }: { params: Promise<{ slug: string 
                       <div className="text-white text-sm mt-0.5">Since {new Date(role.startDate).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}</div>
                     )}
                     {role.body && (
-                      <div className="text-[#c9c9c9] text-sm mt-3 leading-relaxed prose prose-invert max-w-none"
+                      <div className="text-[#C9C9C9] text-sm mt-3 leading-relaxed prose prose-invert max-w-none"
                         dangerouslySetInnerHTML={{ __html: role.body }} />
                     )}
                   </div>
@@ -106,7 +106,7 @@ export default function PersonPage({ params }: { params: Promise<{ slug: string 
                     </h3>
                     <ul className="space-y-2">
                       {cat.items.map((item, i) => (
-                        <li key={i} className="text-[#c9c9c9] text-sm leading-relaxed">
+                        <li key={i} className="text-[#C9C9C9] text-sm leading-relaxed">
                           <div>{item.summary}</div>
                           {item.detail && item.detail !== item.summary && (
                             <div className="text-white text-sm mt-1 whitespace-pre-line">{item.detail}</div>
@@ -121,9 +121,9 @@ export default function PersonPage({ params }: { params: Promise<{ slug: string 
 
             {/* Past Roles */}
             {person.pastRoles.length > 0 && (
-              <div className="bg-[#1a1a1a] border border-[#333333] rounded-xl p-6">
+              <div className="bg-[#002633] border border-[#405b6b] rounded-xl p-6">
                 <h2 className="text-lg font-semibold text-white mb-4">Previous Roles</h2>
-                <div className="divide-y divide-[#2e2e2e]">
+                <div className="divide-y divide-[#1c3849]">
                   {person.pastRoles.map((role, i) => (
                     <div key={i} className="py-3">
                       <div className="text-white text-sm font-medium">{role.title}</div>
