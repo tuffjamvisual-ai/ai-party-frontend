@@ -65,7 +65,13 @@ export default function Navigation() {
                   {item.label}
                 </Link>
               ))}
-              <div className="ml-3 pl-3 border-l border-[#405b6b]">
+              <div className="ml-3 pl-3 border-l border-[#405b6b] flex items-center">
+                <a
+                  href="mailto:info@theaiparty.uk"
+                  className="px-3 py-1.5 text-[#C9C9C9] hover:text-white text-sm"
+                >
+                  Contact
+                </a>
                 {user ? (
                   <>
                     <span className="text-white text-sm truncate max-w-[150px] mr-2">{user.email}</span>
@@ -110,6 +116,13 @@ export default function Navigation() {
                   </Link>
                 ))}
                 <div className="border-t border-[#405b6b]/50 mt-2 pt-2">
+                  <a
+                    href="mailto:info@theaiparty.uk"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full px-3 py-2 text-[#C9C9C9] text-sm"
+                  >
+                    Contact
+                  </a>
                   {user ? (
                     <>
                       <div className="px-3 py-2 text-white text-sm truncate">{user.email}</div>
